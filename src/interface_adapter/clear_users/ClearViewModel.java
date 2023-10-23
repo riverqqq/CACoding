@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 public class ClearViewModel extends ViewModel {
     public static final String CLEAR_ALL_BUTTON_LABEL = "Clear all";
 
-    private ClearState state = new ClearState();
+    private ClearState state = new ClearState(getState().getUsernames());
 
 
     public ClearViewModel() {

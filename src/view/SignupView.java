@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.clear_users.ClearController;
+import interface_adapter.clear_users.ClearState;
 import interface_adapter.clear_users.ClearViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
@@ -181,9 +182,15 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        SignupState state = (SignupState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        Object obj = evt.getNewValue();
+        if(obj instanceof ClearState){
+            ClearState state = (ClearState) obj;
+            JOptionPane.showMessageDialog(this, state.getUsernames());
+        }else {
+            SignupState state = (SignupState) obj;
+            if (state.getUsernameError() != null) {
+                JOptionPane.showMessageDialog(this, state.getUsernameError());
+            }
         }
     }
 }
